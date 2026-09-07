@@ -1,0 +1,9 @@
+## Дискретно-событийная модель SIR
+
+### Базовый эксперимент
+
+{{< include ../project/markdown/01_sir_basic/01_sir_basic.qmd >}}
+
+### Параметрическое исследование
+
+{{< include ../project/markdown/02_sir_param/02_sir_param.qmd >}}

@@ -1,0 +1,9 @@
+## Задача "Обедающие философы"
+
+### Базовый эксперимент
+
+{{< include ../project/markdown/01_dining_philosophers/01_dining_philosophers.qmd >}}
+
+### Параметрическое исследование
+
+{{< include ../project/markdown/02_dining_philosophers_param/02_dining_philosophers_param.qmd >}}

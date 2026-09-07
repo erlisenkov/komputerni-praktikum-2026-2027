@@ -1,0 +1,10 @@
+## Дискретно-событийное моделирование
+
+### Модель M/M/c
+
+{{< include ../project/markdown/01_mmc/01_mmc.qmd >}}
+
+### Модель Росса (параметрическое исследование)
+
+{{< include ../project/markdown/02_ross_param/02_ross_param.qmd >}}
+

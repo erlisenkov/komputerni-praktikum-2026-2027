@@ -1,0 +1,9 @@
+## Модель Daisyworld
+
+### Базовая визуализация
+
+{{< include ../project/markdown/01_daisyworld/01_daisyworld.qmd >}}
+
+### Параметрическое исследование
+
+{{< include ../project/markdown/02_daisyworld_param/02_daisyworld_param.qmd >}}

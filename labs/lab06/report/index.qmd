@@ -1,0 +1,9 @@
+## Модель SIR: Сети Петри
+
+### Базовый эксперимент
+
+{{< include ../project/markdown/01_sirpetri_basic/01_sirpetri_basic.qmd >}}
+
+### Параметрическое исследование
+
+{{< include ../project/markdown/02_sirpetri_param/02_sirpetri_param.qmd >}}

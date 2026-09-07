@@ -1,0 +1,69 @@
+```{julia}
+# Параметрическое исследование модели SIR
+```
+
+### Активация проекта
+
+```{julia}
+using DrWatson
+@quickactivate "project"
+
+include(srcdir("SIRPetri.jl"))
+using .SIRPetri
+using DataFrames, CSV, Plots
+
+script_name = splitext(basename(PROGRAM_FILE))[1]
+mkpath(plotsdir(script_name))
+mkpath(datadir(script_name))
+
+# Параметры эксперимента
+param_dict = Dict(
+    :β => [0.1, 0.3, 0.5, 0.7],
+    :γ => [0.1, 0.2],
+    :tmax => [50.0, 100.0],
+)
+
+# Создаём список всех комбинаций
+params_list = dict_list(param_dict)
+
+println("Всего комбинаций параметров: $(length(params_list))")
+
+# Запуск экспериментов
+for (i, params) in enumerate(params_list)
+    println("Обработка $i/$(length(params_list))...")
+
+    net, u0, _ = build_sir_network(params[:β], params[:γ])
+    df = simulate_deterministic(net, u0, (0.0, params[:tmax]), saveat=0.5, rates=[params[:β], params[:γ]])
+
+    peak_I = maximum(df.I)
+    final_R = df.R[end]
+```
+
+Сохраняем результаты
+
+```{julia}
+    plt_name = savename("sir_param", params) * ".png"
+
+    p = plot(
+        df.time, [df.S, df.I, df.R],
+        label=["S" "I" "R"],
+        title="β=$(params[:β]), γ=$(params[:γ]), Peak I=$peak_I",
+        xlabel="Time", ylabel="Population",
+    )
+```
+
+ИСПРАВЛЕНО: правильный порядок аргументов
+
+```{julia}
+    savefig(p, plotsdir(plt_name))
+```
+
+Сохраняем данные
+
+```{julia}
+    CSV.write(datadir(script_name, savename("sir_param", params) * ".csv"), df)
+end
+
+println("\n✅ Все результаты сохранены")
+```
+
